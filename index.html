@@ -15,8 +15,37 @@
 <body>
 	<div id='map'></div>
 	<script>
-	var map = L.mapbox.map('map', 'examples.map-9ijuk24y')
-	.setView([38.201,13.2759], 13);
+	var map = L.mapbox.map('map', 'examples.map-9ijuk24y').setView([38.201,13.2759], 12);
+
+
+	var percorsi = {
+		"type": "FeatureCollection",
+		"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+		
+		"features": [
+		{ "type": "Feature", "properties": { "ordinanza": "2" }, "geometry": { "type": "LineString", "coordinates": [ [ 13.379423201199245, 38.112522439615297 ], [ 13.380992218458143, 38.110876417058854 ], [ 13.381997998752311, 38.109895116732638 ], [ 13.383607247222978, 38.108945458703701 ], [ 13.385377420540712, 38.10777419679809 ] ] } },
+		{ "type": "Feature", "properties": { "ordinanza": "1" }, "geometry": { "type": "LineString", "coordinates": [ [ 13.372865513681274, 38.120055684813423 ], [ 13.375078230328443, 38.118314877862097 ], [ 13.37656678516381, 38.116732290075895 ], [ 13.378699039387444, 38.114358344090007 ] ] } }
+		]
+	}
+
+
+	var geojsonLayer = new L.GeoJSON();
+
+	geojsonLayer.on("featureparse", function (e) {
+		if (e.properties && e.properties.popupContent){
+			e.layer.bindPopup(e.properties.popupContent);
+		}
+		if (e.properties && e.properties.style && e.layer.setStyle){
+            // The setStyle method isn't available for Points. More on that below ...
+            e.layer.setStyle(e.properties.style);
+        }
+    });
+
+	map.addLayer(geojsonLayer);
+	
+
+	geojsonLayer.addGeoJSON(percorsi);
+
 	</script>
 	
 </body>
