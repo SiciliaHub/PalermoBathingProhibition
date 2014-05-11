@@ -1,9 +1,0 @@
-{
-"type": "FeatureCollection",
-"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
-                                                                                
-"features": [
-{ "type": "Feature", "properties": { "ordinanza": "20", "Data": "3\/31\/2014", "Zona": "da 100 mt. ovest via Virgilio - via Barcarello nc 5d", "Motivazione Divieto": "Non adibiti alla balneazione per inquinamento", "URL_Ordinanza": "http:\/\/www.comune.palermo.it\/js\/server\/uploads\/_02042014134516.pdf" }, "geometry": { "type": "LineString", "coordinates": [ [ 13.379423201199245, 38.112522439615297 ], [ 13.380992218458143, 38.110876417058854 ], [ 13.381997998752311, 38.109895116732638 ], [ 13.383607247222978, 38.108945458703701 ], [ 13.385377420540712, 38.10777419679809 ] ] } },
-{ "type": "Feature", "properties": { "ordinanza": "21", "Data": "3\/31\/2014", "Zona": "da 100 mt. ovest sbocco Ferro di Cavallo Locamare a 100 mt. est", "Motivazione Divieto": "Non adibiti alla balneazione per inquinamento", "URL_Ordinanza": "http:\/\/www.comune.palermo.it\/js\/server\/uploads\/_02042014145512.pdf" }, "geometry": { "type": "LineString", "coordinates": [ [ 13.372865513681274, 38.120055684813423 ], [ 13.375078230328443, 38.118314877862097 ], [ 13.37656678516381, 38.116732290075895 ], [ 13.378699039387444, 38.114358344090007 ] ] } }
-]
-}
