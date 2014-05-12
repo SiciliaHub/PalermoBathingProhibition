@@ -18,7 +18,7 @@
 	<div id='map'></div>
 	<script type="text/javascript" src="./data/divieti.js"></script>
 	<script>
-	var map = L.map('map').addControl(L.mapbox.shareControl());
+	var map = L.map('map',{maxZoom:16,minZoom:11}).addControl(L.mapbox.shareControl());
 
 	map.fitBounds([
 		[38.09395,13.26786],
