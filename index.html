@@ -16,30 +16,40 @@
 	<script src='http://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-hash/v0.2.1/leaflet-hash.js'></script>
 
 	<div id='map'></div>
+	<script type="text/javascript" src="./data/divieti.js"></script>
 	<script>
-	var map = L.mapbox.map('map', 'examples.map-9ijuk24y').setView([38.11783,13.37556], 12).addControl(L.mapbox.shareControl());
+	var map = L.map('map').addControl(L.mapbox.shareControl());
 
+	map.fitBounds([
+		[38.09395,13.26786],
+		[38.22790,13.45829]
+		]);
 
-	var myLines ={
-		"type": "FeatureCollection",
-		"features": [
-		{ "type": "Feature", "properties": { "ordinanza": "20", "Data": "3\/31\/2014", "Zona": "da 100 mt. ovest via Virgilio - via Barcarello nc 5d", "MotivazioneDivieto": "Non adibiti alla balneazione per inquinamento", "URL_Ordinanza": "http:\/\/www.comune.palermo.it\/js\/server\/uploads\/_02042014134516.pdf" }, "geometry": { "type": "LineString", "coordinates": [ [ 13.379423201199245, 38.112522439615297 ], [ 13.380992218458143, 38.110876417058854 ], [ 13.381997998752311, 38.109895116732638 ], [ 13.383607247222978, 38.108945458703701 ], [ 13.385377420540712, 38.10777419679809 ] ] } },
-		{ "type": "Feature", "properties": { "ordinanza": "21", "Data": "3\/31\/2014", "Zona": "da 100 mt. ovest sbocco Ferro di Cavallo Locamare a 100 mt. est", "MotivazioneDivieto": "Non adibiti alla balneazione per inquinamento", "URL_Ordinanza": "http:\/\/www.comune.palermo.it\/js\/server\/uploads\/_02042014145512.pdf" }, "geometry": { "type": "LineString", "coordinates": [ [ 13.372865513681274, 38.120055684813423 ], [ 13.375078230328443, 38.118314877862097 ], [ 13.37656678516381, 38.116732290075895 ], [ 13.378699039387444, 38.114358344090007 ] ] } }
-		]
+	var realvista = L.tileLayer.wms("http://213.215.135.196/reflector/open/service?", {
+		layers: 'rv1',
+		format: 'image/jpeg'
+	}).addTo(map);
+
+	var baseMaps = {
+		'Ortofoto': realvista,
+		'Carta topografica': L.mapbox.tileLayer('examples.map-9ijuk24y')
 	};
 
 
+	layerControl = L.control.layers(baseMaps, null, {position: 'topright'});
+	layerControl.addTo(map);
+
 	var myStyle = {
-		"color": "#ff7800",
-		"weight": 5,
+		"color": "#FF0000",
+		"weight": 3,
 		"opacity": 0.65
 	};
 
 	function onEachFeature(feature, layer) {
 		var popupContent = "<p>no data</p>";
 
-		if (feature.properties && feature.properties.ordinanza) {
-			popupContent = '<strong>Ordinanza: </strong>'+'<a href="'+feature.properties.URL_Ordinanza+'" target="_blank">'+feature.properties.ordinanza+'</a>'+'<br>'
+		if (feature.properties && feature.properties.Ordinanza) {
+			popupContent = '<strong>Ordinanza: </strong>'+'<a href="'+feature.properties.URL_Ordinanza+'" target="_blank">'+feature.properties.Ordinanza+'</a>'+'<br>'
 			+'<strong>Zona: </strong>'+feature.properties.Zona+'<br>'
 			+'<strong>Divieto: </strong>'+feature.properties.MotivazioneDivieto+'<br>';
 		}
@@ -52,6 +62,8 @@
 		style: myStyle,
 		onEachFeature: onEachFeature,
 	}).addTo(map);
+
+
 
 	var credits = L.control.attribution({position:'bottomleft',prefix:''}).addTo(map);
 	credits.addAttribution('<strong>By</strong>: <a href="https://www.facebook.com/groups/opendatasicilia/" target="_blank">Open Data Sicilia</a> | <strong>Dati</strong>: <a href="http://www.comune.palermo.it/noticext.php?id=3881" target="_blank">Comune di Palermo</a> & <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a>');
