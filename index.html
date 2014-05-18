@@ -6,16 +6,52 @@
 	<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
 	<script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js'></script>
 	<link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.css' rel='stylesheet' />
+	<meta property="og:image" content="./imgs/share.png" />
 
 	<style>
 	body { margin:0; padding:0; }
 	#map { position:absolute; top:0; bottom:0; width:100%; }
+	#map-ui {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		z-index: 100;
+		border-width: 1px;
+		-webkit-border-radius: 3px 3px 3px 3px;
+		border-radius: 3px 3px 3px 3px;
+		background: #3887BE;
+		border-color: #3887BE;
+		border-top-color: #FFF;
+		padding: 2px;
+	}
+	#map-ui p {
+		padding: 0px;
+		margin: 0px 2px 0px 2px;
+		color: #DAE0F1;
+	}
+	#map-ui a:link { 
+		color: #FFF;
+	}
+	#map-ui a:visited { 
+		color: #FFF;
+	}
+	#map-ui a:hover {
+		color: #FFF;
+	}
+	#map-ui a:active { 
+		color: #FFF;
+	}
 	</style>
 </head>
 <body>
 	<script src='http://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-hash/v0.2.1/leaflet-hash.js'></script>
 
-	<div id='map'></div>
+	<div id='map'>
+		<div id='map-ui'>
+			<p>a cura di <a href="https://twitter.com/aborruso" target="_blank">@aborruso</a> e <a href="https://www.facebook.com/pigreco314" target="_blank">Salvatore Fiandaca</a></p>
+		</div>
+
+	</div>
 	<script type="text/javascript" src="./data/divieti.js"></script>
 	<script>
 	var map = L.map('map',{maxZoom:16,minZoom:11}).addControl(L.mapbox.shareControl());
@@ -36,7 +72,7 @@
 	};
 
 
-	layerControl = L.control.layers(baseMaps, null, {position: 'topright'});
+	layerControl = L.control.layers(baseMaps, null, {position: 'topleft'});
 	layerControl.addTo(map);
 
 	var myStyle = {
