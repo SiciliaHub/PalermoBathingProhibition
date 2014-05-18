@@ -6,7 +6,7 @@
 	<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
 	<script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js'></script>
 	<link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.css' rel='stylesheet' />
-	<meta property="og:title" content=">Palermo - Divieto di balneazione permanente stagione balneare 2014" />
+	<meta property="og:title" content="Palermo - Divieto di balneazione permanente stagione balneare 2014" />
 	<meta property="og:image" content="./imgs/share.png" />
 
 	<style>
@@ -30,6 +30,10 @@
 		padding: 0px;
 		margin: 0px 2px 0px 2px;
 		color: #DAE0F1;
+	}
+	#map-ui img {
+		padding: 0px;
+		margin: 0px;
 	}
 	#map-ui a:link { 
 		color: #FFF;
@@ -59,12 +63,11 @@
 </head>
 <body>
 	<script src='http://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-hash/v0.2.1/leaflet-hash.js'></script>
-
+	<img src="./imgs/share.png" width="0" height="0">
 	<div id='map'>
 		<div id='map-ui'>
-			<p>a cura di <a href="https://twitter.com/aborruso" target="_blank">@aborruso</a> e <a href="https://www.facebook.com/pigreco314" target="_blank">Salvatore Fiandaca</a> di <a href="https://www.facebook.com/groups/opendatasicilia/" target="_blank">Open Data Sicilia</a></p><img src="./imgs/share.png" width="0" height="0">
+			<p>a cura di <a href="https://twitter.com/aborruso" target="_blank">@aborruso</a> e <a href="https://www.facebook.com/pigreco314" target="_blank">Salvatore Fiandaca</a> di <a href="https://www.facebook.com/groups/opendatasicilia/" target="_blank">Open Data Sicilia</a></p>
 		</div>
-
 	</div>
 	<script type="text/javascript" src="./data/divieti.js"></script>
 	<script>
