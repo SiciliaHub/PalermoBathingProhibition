@@ -116,7 +116,29 @@
 		onEachFeature: onEachFeature,
 	}).addTo(map);
 
+	var myStyletrasp = {
+		"color": "#000000",
+		"weight": 15,
+		"opacity": 0
+	};
 
+	function onEachFeature(feature, layer) {
+		var popupContent = "<p>no data</p>";
+
+		if (feature.properties && feature.properties.Ordinanza) {
+			popupContent = '<strong>Ordinanza: </strong>'+'<a href="'+feature.properties.URL_Ordinanza+'" target="_blank">'+feature.properties.Ordinanza+'</a>'+'<br>'
+			+'<strong>Zona: </strong>'+feature.properties.Zona+'<br>'
+			+'<strong>Divieto: </strong>'+feature.properties.MotivazioneDivieto+'<br>';
+		}
+
+		layer.bindPopup(popupContent);
+	}
+
+
+	var trasp = L.geoJson(myLines, {
+		style: myStyletrasp,
+		onEachFeature: onEachFeature,
+	}).addTo(map);
 
 	var credits = L.control.attribution({position:'bottomleft',prefix:''}).addTo(map);
 	credits.addAttribution('<div id="attribution"><strong>Dati</strong>: <a href="http://www.comune.palermo.it/noticext.php?id=3881" target="_blank">Comune di Palermo</a> & <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> & <a href="http://www.realvista.it/website/Joomla/" target="_blank">RealVista</a></div>' );
